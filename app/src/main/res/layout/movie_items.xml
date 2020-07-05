@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemDetails"
+            type="com.zatto.movieapp.data.model.MovieData" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_margin="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:background="@color/color_light_blue">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gL_tittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gL_left_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.02" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gL_right_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.98" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gL_centre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gL_center_vertical_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.35" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gL_tittleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.15" />
+
+
+            <ImageView
+                android:id="@+id/ImgView_poster"
+                image="@{itemDetails.offer.image}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="0dp"
+                android:contentDescription="@string/str_image"
+                android:background="@drawable/preview"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@id/gL_centre"
+                app:layout_constraintDimensionRatio="4:3"
+                app:layout_constraintEnd_toStartOf="@+id/gL_center_vertical_margin"
+                app:layout_constraintStart_toStartOf="@id/gL_left_margin"
+                app:layout_constraintTop_toBottomOf="@+id/gL_tittleText" />
+
+            <TextView
+                android:id="@+id/txtView_Tittle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{itemDetails.title}"
+                android:textColor="@color/color_black"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/gL_right_margin"
+                app:layout_constraintStart_toEndOf="@+id/gL_center_vertical_margin"
+                app:layout_constraintTop_toBottomOf="@+id/gL_tittleText" />
+
+            <TextView
+                android:id="@+id/txtView_subTittle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{itemDetails.subTitle}"
+                android:textColor="@color/color_black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@id/gL_right_margin"
+                app:layout_constraintStart_toEndOf="@+id/gL_center_vertical_margin"
+                app:layout_constraintTop_toBottomOf="@+id/txtView_Tittle" />
+
+
+            <TextView
+                android:id="@+id/txtView_available"
+                available="@{itemDetails.offer.available}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/color_red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/gL_centre"
+                app:layout_constraintStart_toEndOf="@+id/gL_center_vertical_margin" />
+
+            <TextView
+                android:id="@+id/txtView_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/color_price"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{itemDetails.offer.price}"
+                android:textColor="@color/color_gray"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@id/gL_centre"
+                app:layout_constraintRight_toLeftOf="@+id/gL_right_margin" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

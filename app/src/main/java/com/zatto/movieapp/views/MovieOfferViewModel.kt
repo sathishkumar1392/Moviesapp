@@ -33,6 +33,7 @@ class MovieOfferViewModel(private val repo: MovieRepository) : BaseViewModel() {
 
     private suspend fun movieApiRequest() {
 
+
          CoroutineScope(IO).launch {
             val movieDataJob1 = launch {
                 when (val result = repo.getMoviesData()) {

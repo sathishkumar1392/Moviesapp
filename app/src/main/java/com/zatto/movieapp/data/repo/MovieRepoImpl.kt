@@ -9,41 +9,37 @@ class MovieRepoImpl constructor(
     private val repo: MovieRepo
 ) : MovieRepository{
 
-    override suspend fun getMoviesOffers(): Result<MoviesResponseApi> {
-        return if (connectivity.isNetworkAvailable()){
-                  getMovies()
-        }else return Result.Error("No Internet Connection")
-    }
 
-
-    override suspend fun getMoviesData(): Result<MoviesData> {
-        return if (connectivity.isNetworkAvailable()){
-            getMovieItemData()
-        }else return Result.Error("No Internet Connection")
-    }
+    override suspend fun getMoviesOffers() = getMovies()
+    override suspend fun getMoviesData() = getMovieItemData()
 
 
     private suspend fun getMovies() : Result<MoviesResponseApi>{
-        val response = repo.getMovieOffers()
-        if (response.isSuccessful) {
-            response.body()?.let {
-                return Result.Success(it)
+        if (connectivity.isNetworkAvailable()){
+            val response = repo.getMovieOffers()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    return Result.Success(it)
+                }
             }
+            return Result.Error(response.errorBody().toString())
         }
-        return Result.Error(response.errorBody().toString())
+        return Result.Error("No Internet Connection")
     }
 
 
-  private suspend fun getMovieItemData(): Result<MoviesData> {
-      val response  = repo.getMovieData()
-      if (response.isSuccessful) {
-          response.body()?.let {
-              return Result.Success(it)
+    private suspend fun getMovieItemData(): Result<MoviesData> {
+      if (connectivity.isNetworkAvailable()){
+          val response  = repo.getMovieData()
+          if (response.isSuccessful) {
+              response.body()?.let {
+                  return Result.Success(it)
+              }
           }
+          return Result.Error(response.errorBody().toString())
       }
-      return Result.Error(response.errorBody().toString())
+      return Result.Error("No Internet Connection")
     }
-
 }
 
 

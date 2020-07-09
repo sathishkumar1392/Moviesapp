@@ -1,6 +1,7 @@
 package com.zatto.movieapp.views
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.zatto.movieapp.data.endpointpath.Constant
 import com.zatto.movieapp.data.model.MovieData
 import com.zatto.movieapp.data.model.MovieOffer
@@ -35,7 +36,7 @@ class MovieOfferViewModel(private val repo: MovieRepository) : BaseViewModel() {
 
 
          CoroutineScope(IO).launch {
-            val movieDataJob1 = launch {
+            val movieDataJob1 = viewModelScope.launch {
                 when (val result = repo.getMoviesData()) {
 
                     is Result.Success -> {

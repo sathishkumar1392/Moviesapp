@@ -61,7 +61,6 @@ class MovieRepoImplTest : BaseTest() {
        result.code()
 
        runBlocking {
-           Mockito.`when`(connectivity.isNetworkAvailable()).thenReturn(true)
            Mockito.`when`(movieService.getMovieData()).thenReturn(result)
            val response = movieService.getMovieData()
            Assert.assertEquals(result, response)

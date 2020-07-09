@@ -14,4 +14,6 @@ interface MovieRepo {
 
     @GET(EndPointsPath.Movies.MOVIESDATA)
     suspend fun getMovieData():Response<MoviesData>
+
+
 }
